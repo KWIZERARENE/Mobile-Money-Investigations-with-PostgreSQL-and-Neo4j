@@ -1,6 +1,7 @@
-data/
-*.csv
-.venv/
+﻿.venv/
 __pycache__/
-env.ps1
-results/*.snapshot
+*.csv
+*.dump
+*.db
+data/
+results/*.png
