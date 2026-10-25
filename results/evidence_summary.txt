@@ -1,0 +1,144 @@
+===== SET A =====
+review account 998; hour window 06 Sep 09:45:00 to 06 Sep 10:45:00 CAT
+Q1 outgoing in hour (count, RWF): [[1, 200000]]
+Q3 shared-device overlaps: 4 rows, 4 other accounts, 2 devices
+      Q3 row: [8917, 228001, 'handset', 0, 29]
+      Q3 row: [16836, 228001, 'handset', 0, 29]
+      Q3 row: [24755, 228001, 'handset', 0, 29]
+      Q3 row: [220998, 998, 'handset', 0, 29]
+Q4 k=4: Kigali=3, Northern=7  (total 10)
+Q4 k=6: Eastern=6, Kigali=9, Northern=13, Southern=9, Western=6  (total 43)
+Q4 k=8: Eastern=30, Kigali=33, Northern=37, Southern=45, Western=30  (total 175)
+Q4 k=10: Eastern=36, Kigali=35, Northern=37, Southern=45, Western=34  (total 187)
+Q5 rapid onward chains: 1
+      transfers 20000001,20000002,20000003; accounts 998->8917->16836->24755; amounts 200,000, 196,000, 192,080 RWF
+   detail of first chain:
+      transfer 20000001: 998 -> 8917  200,000 RWF  at 06 Sep 10:00:00 CAT
+      transfer 20000002: 8917 -> 16836  196,000 RWF  at 06 Sep 10:00:40 CAT
+      transfer 20000003: 16836 -> 24755  192,080 RWF  at 06 Sep 10:01:20 CAT
+Q6 cycles: 1
+      transfers [20000001, 20000002, 20000003, 20000004] (4 transfers), first 06 Sep 10:00:00, last 06 Sep 10:02:00 CAT
+   detail of first cycle:
+      transfer 20000001: 998 -> 8917  200,000 RWF  at 06 Sep 10:00:00 CAT
+      transfer 20000002: 8917 -> 16836  196,000 RWF  at 06 Sep 10:00:40 CAT
+      transfer 20000003: 16836 -> 24755  192,080 RWF  at 06 Sep 10:01:20 CAT
+      transfer 20000004: 24755 -> 998  188,238 RWF  at 06 Sep 10:02:00 CAT
+Q7 shortest connection: bound 4 = 3, bound 6 = 3
+
+===== SET B =====
+review account 147228; hour window 13 Sep 09:45:00 to 13 Sep 10:45:00 CAT
+Q1 outgoing in hour (count, RWF): [[1, 1050000]]
+Q3 shared-device overlaps: 9 rows, 9 other accounts, 2 devices
+      Q3 row: [147226, 147226, 'handset', 0, 29]
+      Q3 row: [147227, 147226, 'handset', 0, 29]
+      Q3 row: [147229, 147226, 'handset', 0, 29]
+      Q3 row: [147230, 147226, 'handset', 0, 29]
+      Q3 row: [155147, 228018, 'handset', 0, 29]
+      Q3 row: [163066, 228018, 'handset', 0, 29]
+      Q3 row: [170985, 228018, 'handset', 0, 29]
+      Q3 row: [178904, 228018, 'handset', 0, 29]
+      Q3 row: [186823, 228018, 'handset', 0, 29]
+Q4 k=4: Eastern=13, Kigali=6, Northern=7, Southern=9, Western=11  (total 46)
+Q4 k=6: Eastern=37, Kigali=30, Northern=35, Southern=45, Western=31  (total 178)
+Q4 k=8: Eastern=40, Kigali=33, Northern=35, Southern=47, Western=33  (total 188)
+Q4 k=10: Eastern=45, Kigali=41, Northern=46, Southern=57, Western=39  (total 228)
+Q5 rapid onward chains: 1
+      transfers 20000092,20000093,20000094; accounts 147228->155147->163066->170985; amounts 1,050,000, 1,029,000, 1,008,420 RWF
+   detail of first chain:
+      transfer 20000092: 147228 -> 155147  1,050,000 RWF  at 13 Sep 10:00:17 CAT
+      transfer 20000093: 155147 -> 163066  1,029,000 RWF  at 13 Sep 10:00:57 CAT
+      transfer 20000094: 163066 -> 170985  1,008,420 RWF  at 13 Sep 10:01:37 CAT
+Q6 cycles: 0
+Q7 shortest connection: bound 4 = no path, bound 6 = 5
+
+===== SET C =====
+review account 206978; hour window 08 Sep 09:45:00 to 08 Sep 10:45:00 CAT
+Q1 outgoing in hour (count, RWF): [[1, 300000]]
+Q3 shared-device overlaps: 9 rows, 9 other accounts, 2 devices
+      Q3 row: [6573, 228043, 'handset', 0, 29]
+      Q3 row: [206976, 206976, 'handset', 11, 29]
+      Q3 row: [206977, 206976, 'handset', 0, 29]
+      Q3 row: [206979, 206976, 'handset', 0, 29]
+      Q3 row: [206980, 206976, 'handset', 0, 29]
+      Q3 row: [214897, 228043, 'handset', 0, 29]
+      Q3 row: [222816, 228043, 'handset', 0, 29]
+      Q3 row: [230735, 228043, 'handset', 0, 29]
+      Q3 row: [238654, 228043, 'handset', 0, 29]
+Q4 k=4: Eastern=23, Kigali=24, Northern=29, Southern=43, Western=27  (total 146)
+Q4 k=6: Eastern=82, Kigali=90, Northern=97, Southern=121, Western=93  (total 483)
+Q4 k=8: Eastern=151, Kigali=172, Northern=167, Southern=186, Western=156  (total 832)
+Q4 k=10: Eastern=278, Kigali=293, Northern=295, Southern=294, Western=273  (total 1433)
+Q5 rapid onward chains: 1
+      transfers 20000229,20000230,20000231; accounts 206978->214897->222816->230735; amounts 300,000, 294,000, 288,120 RWF
+   detail of first chain:
+      transfer 20000229: 206978 -> 214897  300,000 RWF  at 08 Sep 10:00:42 CAT
+      transfer 20000230: 214897 -> 222816  294,000 RWF  at 08 Sep 10:01:22 CAT
+      transfer 20000231: 222816 -> 230735  288,120 RWF  at 08 Sep 10:02:02 CAT
+Q6 cycles: 1
+      transfers [20000229, 20000230, 20000231, 20000232, 20000233, 20000234] (6 transfers), first 08 Sep 10:00:42, last 08 Sep 10:04:02 CAT
+   detail of first cycle:
+      transfer 20000229: 206978 -> 214897  300,000 RWF  at 08 Sep 10:00:42 CAT
+      transfer 20000230: 214897 -> 222816  294,000 RWF  at 08 Sep 10:01:22 CAT
+      transfer 20000231: 222816 -> 230735  288,120 RWF  at 08 Sep 10:02:02 CAT
+      transfer 20000232: 230735 -> 238654  282,357 RWF  at 08 Sep 10:02:42 CAT
+      transfer 20000233: 238654 -> 6573  276,710 RWF  at 08 Sep 10:03:22 CAT
+      transfer 20000234: 6573 -> 206978  271,176 RWF  at 08 Sep 10:04:02 CAT
+Q7 shortest connection: bound 4 = no path, bound 6 = 5
+
+===== SET D =====
+review account 237998; hour window 06 Sep 09:45:00 to 06 Sep 10:45:00 CAT
+Q1 outgoing in hour (count, RWF): [[1, 45000]]
+Q3 shared-device overlaps: 4 rows, 4 other accounts, 2 devices
+      Q3 row: [5917, 228301, 'handset', 0, 29]
+      Q3 row: [13836, 228301, 'handset', 0, 29]
+      Q3 row: [17998, 17998, 'handset', 0, 29]
+      Q3 row: [21755, 228301, 'handset', 0, 29]
+Q4 k=4: Eastern=2, Northern=1, Western=7  (total 10)
+Q4 k=6: Eastern=8, Kigali=10, Northern=7, Southern=6, Western=13  (total 44)
+Q4 k=8: Eastern=32, Kigali=50, Northern=31, Southern=30, Western=37  (total 180)
+Q4 k=10: Eastern=34, Kigali=50, Northern=37, Southern=34, Western=37  (total 192)
+Q5 rapid onward chains: 0
+Q6 cycles: 0
+Q7 shortest connection: bound 4 = 3, bound 6 = 3
+
+===== SET E =====
+review account 144228; hour window 13 Sep 09:45:00 to 13 Sep 10:45:00 CAT
+Q1 outgoing in hour (count, RWF): [[1, 40000]]
+Q3 shared-device overlaps: 9 rows, 9 other accounts, 2 devices
+      Q3 row: [144226, 144226, 'handset', 0, 29]
+      Q3 row: [144227, 144226, 'handset', 0, 29]
+      Q3 row: [144229, 144226, 'handset', 0, 29]
+      Q3 row: [144230, 144226, 'handset', 0, 29]
+      Q3 row: [152147, 228318, 'handset', 0, 29]
+      Q3 row: [160066, 228318, 'handset', 0, 29]
+      Q3 row: [167985, 228318, 'handset', 0, 29]
+      Q3 row: [175904, 228318, 'handset', 0, 29]
+      Q3 row: [183823, 228318, 'handset', 0, 29]
+Q4 k=4: Eastern=6, Kigali=10, Northern=13, Southern=11, Western=7  (total 47)
+Q4 k=6: Eastern=30, Kigali=50, Northern=37, Southern=31, Western=35  (total 183)
+Q4 k=8: Eastern=33, Kigali=52, Northern=40, Southern=33, Western=35  (total 193)
+Q4 k=10: Eastern=40, Kigali=62, Northern=45, Southern=39, Western=44  (total 230)
+Q5 rapid onward chains: 0
+Q6 cycles: 0
+Q7 shortest connection: bound 4 = no path, bound 6 = 5
+
+===== SET F =====
+review account 203978; hour window 08 Sep 09:45:00 to 08 Sep 10:45:00 CAT
+Q1 outgoing in hour (count, RWF): [[1, 30000]]
+Q3 shared-device overlaps: 9 rows, 9 other accounts, 2 devices
+      Q3 row: [3573, 228343, 'handset', 0, 29]
+      Q3 row: [203976, 203976, 'handset', 11, 29]
+      Q3 row: [203977, 203976, 'handset', 0, 29]
+      Q3 row: [203979, 203976, 'handset', 0, 29]
+      Q3 row: [203980, 203976, 'handset', 0, 29]
+      Q3 row: [211897, 228343, 'handset', 0, 29]
+      Q3 row: [219816, 228343, 'handset', 0, 29]
+      Q3 row: [227735, 228343, 'handset', 0, 29]
+      Q3 row: [235654, 228343, 'handset', 0, 29]
+Q4 k=4: Eastern=25, Kigali=44, Northern=29, Southern=27, Western=22  (total 147)
+Q4 k=6: Eastern=93, Kigali=125, Northern=92, Southern=96, Western=82  (total 488)
+Q4 k=8: Eastern=161, Kigali=190, Northern=164, Southern=174, Western=148  (total 837)
+Q4 k=10: Eastern=278, Kigali=302, Northern=295, Southern=288, Western=263  (total 1426)
+Q5 rapid onward chains: 0
+Q6 cycles: 0
+Q7 shortest connection: bound 4 = no path, bound 6 = 5

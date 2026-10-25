@@ -1,0 +1,24 @@
+Sort  (cost=528668.53..529636.43 rows=387159 width=20) (actual time=5416.181..5419.228 rows=30.00 loops=1)
+  Sort Key: (((to_timestamp((occurred_at)::double precision) AT TIME ZONE 'Africa/Kigali'::text))::date)
+  Sort Method: quicksort  Memory: 26kB
+  Buffers: shared hit=867 read=146272
+  ->  Finalize HashAggregate  (cost=484992.03..492735.21 rows=387159 width=20) (actual time=5412.725..5417.047 rows=30.00 loops=1)
+        Group Key: (((to_timestamp((occurred_at)::double precision) AT TIME ZONE 'Africa/Kigali'::text))::date)
+        Batches: 1  Memory Usage: 8225kB
+        Buffers: shared hit=864 read=146272
+        ->  Gather  (cost=377361.79..478023.17 rows=929182 width=20) (actual time=5409.539..5415.667 rows=90.00 loops=1)
+              Workers Planned: 2
+              Workers Launched: 2
+              Buffers: shared hit=864 read=146272
+              ->  Partial HashAggregate  (cost=376361.79..384104.97 rows=387159 width=20) (actual time=5368.709..5370.036 rows=30.00 loops=3)
+                    Group Key: ((to_timestamp((occurred_at)::double precision) AT TIME ZONE 'Africa/Kigali'::text))::date
+                    Batches: 1  Memory Usage: 8225kB
+                    Buffers: shared hit=864 read=146272
+                    Worker 0:  Batches: 1  Memory Usage: 8225kB
+                    Worker 1:  Batches: 1  Memory Usage: 8225kB
+                    ->  Parallel Seq Scan on transfers  (cost=0.00..313845.66 rows=8335483 width=8) (actual time=1.272..4162.260 rows=6667766.67 loops=3)
+                          Buffers: shared hit=864 read=146272
+Planning:
+  Buffers: shared hit=179 read=3
+Planning Time: 6.904 ms
+Execution Time: 5424.051 ms

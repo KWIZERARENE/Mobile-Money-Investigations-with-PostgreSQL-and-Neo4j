@@ -1,0 +1,5 @@
+ProduceResults@neo4j  rows=30  dbHits=0  time=282600
+  Sort@neo4j  rows=30  dbHits=0  time=560900
+    EagerAggregation@neo4j  rows=30  dbHits=20003300  time=None
+      Projection@neo4j  rows=20003300  dbHits=20003300  time=None
+        DirectedRelationshipTypeScan@neo4j  rows=20003300  dbHits=20003301  time=41113199765

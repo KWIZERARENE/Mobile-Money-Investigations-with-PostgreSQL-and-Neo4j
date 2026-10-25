@@ -1,0 +1,8 @@
+ProduceResults@neo4j  rows=1  dbHits=0  time=None
+  Projection@neo4j  rows=1  dbHits=4  time=None
+    ShortestPath@neo4j  rows=1  dbHits=26110  time=16126299
+      CartesianProduct@neo4j  rows=1  dbHits=0  time=60399
+        Filter@neo4j  rows=1  dbHits=1  time=None
+          NodeUniqueIndexSeek@neo4j  rows=1  dbHits=2  time=472800
+        Filter@neo4j  rows=1  dbHits=1  time=None
+          NodeUniqueIndexSeek@neo4j  rows=1  dbHits=2  time=340600

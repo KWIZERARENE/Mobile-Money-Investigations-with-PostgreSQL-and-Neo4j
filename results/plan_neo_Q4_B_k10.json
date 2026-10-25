@@ -1,0 +1,209 @@
+{
+ "args": {
+  "Order": "region ASC",
+  "GlobalMemory": 29616,
+  "planner-impl": "IDP",
+  "Memory": 0,
+  "string-representation": "Cypher 25\r\n\r\nPlanner COST\r\n\r\nRuntime PIPELINED\r\n\r\nRuntime version 2026.05.0\r\n\r\nBatch size 128\r\n\r\n+-----------------------------------+----+------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+------------+---------------------+----------------------+\r\n| Operator                          | Id | Details                                              | Estimated Rows | Rows | DB Hits | Memory (Bytes) | Page Cache Hits/Misses | Time (ms) | Ordered by | Pipeline            | Indexes Used         |\r\n+-----------------------------------+----+------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+------------+---------------------+----------------------+\r\n| +ProduceResults                   |  0 | region, accounts                                     |              9 |    5 |       0 |              0 |                    0/0 |     0.077 |            |                     |                      |\r\n| |                                 +----+------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+            |                     +----------------------+\r\n| +Sort                             |  1 | region ASC                                           |              9 |    5 |       0 |            776 |                    0/0 |     0.213 | region ASC | In Pipeline 2       |                      |\r\n| |                                 +----+------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+------------+---------------------+----------------------+\r\n| +EagerAggregation                 |  2 | c.region AS region, count(a) AS accounts             |              9 |    5 |     456 |           1256 |                        |           |            |                     |                      |\r\n| |                                 +----+------------------------------------------------------+----------------+------+---------+----------------+                        |           +------------+                     +----------------------+\r\n| +Filter                           |  3 | c:Customer                                           |             81 |  228 |     456 |                |                        |           |            |                     |                      |\r\n| |                                 +----+------------------------------------------------------+----------------+------+---------+----------------+                        |           +------------+                     +----------------------+\r\n| +Expand(All)                      |  4 | (a)<-[:OWNS]-(c)                                     |             81 |  228 |     456 |                |                        |           |            |                     |                      |\r\n| |                                 +----+------------------------------------------------------+----------------+------+---------+----------------+                        |           +------------+                     +----------------------+\r\n| +Projection                       |  5 | a                                                    |             81 |  228 |       0 |                |                        |           |            |                     |                      |\r\n| |                                 +----+------------------------------------------------------+----------------+------+---------+----------------+                        |           +------------+                     +----------------------+\r\n| +Filter                           |  6 | NOT a = r AND a:Account                              |             85 |  228 |     906 |                |                        |           |            |                     |                      |\r\n| |                                 +----+------------------------------------------------------+----------------+------+---------+----------------+                        |           +------------+                     +----------------------+\r\n| +VarLengthExpand(Pruning,BFS,All) |  7 | (r)-[:OWNS|USED_DEVICE*..10]-(a)                     |            192 |  453 |    1318 |          27848 |                        |           |            |                     |                      |\r\n| |                                 +----+------------------------------------------------------+----------------+------+---------+----------------+                        |           +------------+                     +----------------------+\r\n| +NodeUniqueIndexSeek              |  8 | UNIQUE r:Account(account_id) WHERE account_id = $acc |              1 |    1 |       2 |            376 |                 1434/0 |     5.476 |            | Fused in Pipeline 0 | account_id_unique: 1 |\r\n+-----------------------------------+----+------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+------------+---------------------+----------------------+\r\n\r\nTotal database accesses: 3594, total allocated memory: 29616\r\n",
+  "runtime": "PIPELINED",
+  "Time": 76700,
+  "runtime-impl": "PIPELINED",
+  "version": "25",
+  "DbHits": 0,
+  "batch-size": 128,
+  "Details": "region, accounts",
+  "planner-version": "2026.05.0",
+  "PipelineInfo": "In Pipeline 2",
+  "runtime-version": "2026.05.0",
+  "Id": 0,
+  "EstimatedRows": 9.005387442281556,
+  "planner": "COST",
+  "PageCacheMisses": 0,
+  "Rows": 5,
+  "PageCacheHits": 0
+ },
+ "pageCacheMisses": 0,
+ "children": [
+  {
+   "args": {
+    "Order": "region ASC",
+    "Details": "region ASC",
+    "PipelineInfo": "In Pipeline 2",
+    "Memory": 776,
+    "Time": 213000,
+    "Id": 1,
+    "EstimatedRows": 9.005387442281556,
+    "PageCacheMisses": 0,
+    "DbHits": 0,
+    "Rows": 5,
+    "PageCacheHits": 0
+   },
+   "pageCacheMisses": 0,
+   "children": [
+    {
+     "args": {
+      "Details": "c.region AS region, count(a) AS accounts",
+      "Memory": 1256,
+      "PipelineInfo": "Fused in Pipeline 0",
+      "Id": 2,
+      "EstimatedRows": 9.005387442281556,
+      "DbHits": 456,
+      "Rows": 5
+     },
+     "children": [
+      {
+       "args": {
+        "Id": 3,
+        "Details": "c:Customer",
+        "EstimatedRows": 81.09700298560234,
+        "PipelineInfo": "Fused in Pipeline 0",
+        "DbHits": 456,
+        "Rows": 228
+       },
+       "children": [
+        {
+         "args": {
+          "Id": 4,
+          "Details": "(a)<-[:OWNS]-(c)",
+          "EstimatedRows": 81.09700298560234,
+          "PipelineInfo": "Fused in Pipeline 0",
+          "DbHits": 456,
+          "Rows": 228
+         },
+         "children": [
+          {
+           "args": {
+            "Id": 5,
+            "Details": "a",
+            "EstimatedRows": 81.09700298560234,
+            "PipelineInfo": "Fused in Pipeline 0",
+            "DbHits": 0,
+            "Rows": 228
+           },
+           "children": [
+            {
+             "args": {
+              "Id": 6,
+              "Details": "NOT a = r AND a:Account",
+              "EstimatedRows": 85.36526630063405,
+              "PipelineInfo": "Fused in Pipeline 0",
+              "DbHits": 906,
+              "Rows": 228
+             },
+             "children": [
+              {
+               "args": {
+                "Details": "(r)-[:OWNS|USED_DEVICE*..10]-(a) ",
+                "Memory": 27848,
+                "PipelineInfo": "Fused in Pipeline 0",
+                "Id": 7,
+                "EstimatedRows": 191.84999906171535,
+                "DbHits": 1318,
+                "Rows": 453
+               },
+               "children": [
+                {
+                 "args": {
+                  "Details": "UNIQUE r:Account(account_id) WHERE account_id = $acc",
+                  "PipelineInfo": "Fused in Pipeline 0",
+                  "Memory": 376,
+                  "Time": 5476198,
+                  "Id": 8,
+                  "UsedIndexes": "account_id_unique: 1",
+                  "EstimatedRows": 1.0,
+                  "PageCacheMisses": 0,
+                  "DbHits": 2,
+                  "Rows": 1,
+                  "PageCacheHits": 1434
+                 },
+                 "pageCacheMisses": 0,
+                 "dbHits": 2,
+                 "identifiers": [
+                  "r"
+                 ],
+                 "operatorType": "NodeUniqueIndexSeek@neo4j",
+                 "time": 5476198,
+                 "rows": 1,
+                 "pageCacheHitRatio": 1.0,
+                 "pageCacheHits": 1434
+                }
+               ],
+               "dbHits": 1318,
+               "identifiers": [
+                "r",
+                "a"
+               ],
+               "operatorType": "VarLengthExpand(Pruning,BFS,All)@neo4j",
+               "rows": 453
+              }
+             ],
+             "dbHits": 906,
+             "identifiers": [
+              "r",
+              "a"
+             ],
+             "operatorType": "Filter@neo4j",
+             "rows": 228
+            }
+           ],
+           "dbHits": 0,
+           "identifiers": [
+            "r",
+            "a"
+           ],
+           "operatorType": "Projection@neo4j",
+           "rows": 228
+          }
+         ],
+         "dbHits": 456,
+         "identifiers": [
+          "r",
+          "a",
+          "c"
+         ],
+         "operatorType": "Expand(All)@neo4j",
+         "rows": 228
+        }
+       ],
+       "dbHits": 456,
+       "identifiers": [
+        "r",
+        "a",
+        "c"
+       ],
+       "operatorType": "Filter@neo4j",
+       "rows": 228
+      }
+     ],
+     "dbHits": 456,
+     "identifiers": [
+      "region",
+      "accounts"
+     ],
+     "operatorType": "EagerAggregation@neo4j",
+     "rows": 5
+    }
+   ],
+   "dbHits": 0,
+   "identifiers": [
+    "region",
+    "accounts"
+   ],
+   "operatorType": "Sort@neo4j",
+   "time": 213000,
+   "rows": 5,
+   "pageCacheHitRatio": 0.0,
+   "pageCacheHits": 0
+  }
+ ],
+ "dbHits": 0,
+ "identifiers": [
+  "region",
+  "accounts"
+ ],
+ "operatorType": "ProduceResults@neo4j",
+ "time": 76700,
+ "rows": 5,
+ "pageCacheHitRatio": 0.0,
+ "pageCacheHits": 0
+}

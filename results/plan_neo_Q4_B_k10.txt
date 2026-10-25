@@ -1,0 +1,9 @@
+ProduceResults@neo4j  rows=5  dbHits=0  time=76700
+  Sort@neo4j  rows=5  dbHits=0  time=213000
+    EagerAggregation@neo4j  rows=5  dbHits=456  time=None
+      Filter@neo4j  rows=228  dbHits=456  time=None
+        Expand(All)@neo4j  rows=228  dbHits=456  time=None
+          Projection@neo4j  rows=228  dbHits=0  time=None
+            Filter@neo4j  rows=228  dbHits=906  time=None
+              VarLengthExpand(Pruning,BFS,All)@neo4j  rows=453  dbHits=1318  time=None
+                NodeUniqueIndexSeek@neo4j  rows=1  dbHits=2  time=5476198

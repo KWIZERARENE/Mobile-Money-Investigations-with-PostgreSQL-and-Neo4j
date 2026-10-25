@@ -1,0 +1,133 @@
+{
+ "args": {
+  "Order": "day ASC",
+  "GlobalMemory": 6720,
+  "planner-impl": "IDP",
+  "Memory": 0,
+  "string-representation": "Cypher 25\r\n\r\nPlanner COST\r\n\r\nRuntime PIPELINED\r\n\r\nRuntime version 2026.05.0\r\n\r\nBatch size 1024\r\n\r\n+-------------------------------+----+-------------------------------------------------------------------------------+----------------+----------+----------+----------------+------------------------+-----------+------------+---------------------+\r\n| Operator                      | Id | Details                                                                       | Estimated Rows | Rows     | DB Hits  | Memory (Bytes) | Page Cache Hits/Misses | Time (ms) | Ordered by | Pipeline            |\r\n+-------------------------------+----+-------------------------------------------------------------------------------+----------------+----------+----------+----------------+------------------------+-----------+------------+---------------------+\r\n| +ProduceResults               |  0 | day, n, total_rwf                                                             |           4473 |       30 |        0 |              0 |                    0/0 |     0.283 |            |                     |\r\n| |                             +----+-------------------------------------------------------------------------------+----------------+----------+----------+----------------+------------------------+-----------+            |                     |\r\n| +Sort                         |  1 | day ASC                                                                       |           4473 |       30 |        0 |           3576 |                    0/0 |     0.561 | day ASC    | In Pipeline 2       |\r\n| |                             +----+-------------------------------------------------------------------------------+----------------+----------+----------+----------------+------------------------+-----------+------------+---------------------+\r\n| +EagerAggregation             |  2 | day, count(*) AS n, sum(t.amount_rwf) AS total_rwf                            |           4473 |       30 | 20003300 |           6096 |                        |           |            |                     |\r\n| |                             +----+-------------------------------------------------------------------------------+----------------+----------+----------+----------------+                        |           +------------+                     |\r\n| +Projection                   |  3 | date(datetime({epochSeconds: t.occurred_at, timezone: $autostring_0})) AS day |       20003300 | 20003300 | 20003300 |              0 |                        |           |            |                     |\r\n| |                             +----+-------------------------------------------------------------------------------+----------------+----------+----------+----------------+                        |           +------------+                     |\r\n| +DirectedRelationshipTypeScan |  4 | ()-[t:TRANSFER]->()                                                           |       20003300 | 20003300 | 20003301 |            376 |               457201/0 | 41113.200 |            | Fused in Pipeline 0 |\r\n+-------------------------------+----+-------------------------------------------------------------------------------+----------------+----------+----------+----------------+------------------------+-----------+------------+---------------------+\r\n\r\nTotal database accesses: 60009901, total allocated memory: 6720\r\n",
+  "runtime": "PIPELINED",
+  "Time": 282600,
+  "runtime-impl": "PIPELINED",
+  "version": "25",
+  "DbHits": 0,
+  "batch-size": 1024,
+  "Details": "day, n, total_rwf",
+  "planner-version": "2026.05.0",
+  "PipelineInfo": "In Pipeline 2",
+  "runtime-version": "2026.05.0",
+  "Id": 0,
+  "EstimatedRows": 4472.504890997885,
+  "planner": "COST",
+  "PageCacheMisses": 0,
+  "Rows": 30,
+  "PageCacheHits": 0
+ },
+ "pageCacheMisses": 0,
+ "children": [
+  {
+   "args": {
+    "Order": "day ASC",
+    "Details": "day ASC",
+    "PipelineInfo": "In Pipeline 2",
+    "Memory": 3576,
+    "Time": 560900,
+    "Id": 1,
+    "EstimatedRows": 4472.504890997885,
+    "PageCacheMisses": 0,
+    "DbHits": 0,
+    "Rows": 30,
+    "PageCacheHits": 0
+   },
+   "pageCacheMisses": 0,
+   "children": [
+    {
+     "args": {
+      "Details": "day, count(*) AS n, sum(t.amount_rwf) AS total_rwf",
+      "Memory": 6096,
+      "PipelineInfo": "Fused in Pipeline 0",
+      "Id": 2,
+      "EstimatedRows": 4472.504890997885,
+      "DbHits": 20003300,
+      "Rows": 30
+     },
+     "children": [
+      {
+       "args": {
+        "Details": "date(datetime({epochSeconds: t.occurred_at, timezone: $autostring_0})) AS day",
+        "Memory": 0,
+        "PipelineInfo": "Fused in Pipeline 0",
+        "Id": 3,
+        "EstimatedRows": 20003300.0,
+        "DbHits": 20003300,
+        "Rows": 20003300
+       },
+       "children": [
+        {
+         "args": {
+          "Details": "()-[t:TRANSFER]->()",
+          "PipelineInfo": "Fused in Pipeline 0",
+          "Memory": 376,
+          "Time": 41113199765,
+          "Id": 4,
+          "EstimatedRows": 20003300.0,
+          "PageCacheMisses": 0,
+          "DbHits": 20003301,
+          "Rows": 20003300,
+          "PageCacheHits": 457201
+         },
+         "pageCacheMisses": 0,
+         "dbHits": 20003301,
+         "identifiers": [
+          "t"
+         ],
+         "operatorType": "DirectedRelationshipTypeScan@neo4j",
+         "time": 41113199765,
+         "rows": 20003300,
+         "pageCacheHitRatio": 1.0,
+         "pageCacheHits": 457201
+        }
+       ],
+       "dbHits": 20003300,
+       "identifiers": [
+        "t",
+        "day"
+       ],
+       "operatorType": "Projection@neo4j",
+       "rows": 20003300
+      }
+     ],
+     "dbHits": 20003300,
+     "identifiers": [
+      "day",
+      "n",
+      "total_rwf"
+     ],
+     "operatorType": "EagerAggregation@neo4j",
+     "rows": 30
+    }
+   ],
+   "dbHits": 0,
+   "identifiers": [
+    "day",
+    "n",
+    "total_rwf"
+   ],
+   "operatorType": "Sort@neo4j",
+   "time": 560900,
+   "rows": 30,
+   "pageCacheHitRatio": 0.0,
+   "pageCacheHits": 0
+  }
+ ],
+ "dbHits": 0,
+ "identifiers": [
+  "day",
+  "n",
+  "total_rwf"
+ ],
+ "operatorType": "ProduceResults@neo4j",
+ "time": 282600,
+ "rows": 30,
+ "pageCacheHitRatio": 0.0,
+ "pageCacheHits": 0
+}

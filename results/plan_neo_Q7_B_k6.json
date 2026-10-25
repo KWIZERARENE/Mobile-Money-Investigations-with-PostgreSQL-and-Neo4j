@@ -1,0 +1,191 @@
+{
+ "args": {
+  "GlobalMemory": 38016,
+  "planner-impl": "IDP",
+  "Memory": 0,
+  "string-representation": "Cypher 25\r\n\r\nPlanner COST\r\n\r\nRuntime PIPELINED\r\n\r\nRuntime version 2026.05.0\r\n\r\nBatch size 128\r\n\r\n+------------------------+----+------------------------------------------------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+----------------------+\r\n| Operator               | Id | Details                                                                                              | Estimated Rows | Rows | DB Hits | Memory (Bytes) | Page Cache Hits/Misses | Time (ms) | Pipeline            | Indexes Used         |\r\n+------------------------+----+------------------------------------------------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+----------------------+\r\n| +ProduceResults        |  0 | hops                                                                                                 |              0 |    1 |       0 |              0 |                        |           |                     |                      |\r\n| |                      +----+------------------------------------------------------------------------------------------------------+----------------+------+---------+----------------+                        |           |                     +----------------------+\r\n| +Projection            |  1 | length((s)-[anon_7*]->(d)) AS hops                                                                   |              0 |    1 |       4 |                |                        |           |                     |                      |\r\n| |                      +----+------------------------------------------------------------------------------------------------------+----------------+------+---------+----------------+                        |           |                     +----------------------+\r\n| +ShortestPath          |  2 | anon_13 = (s)-[anon_7:TRANSFER*..6]->(d) WHERE all(anon_11 IN nodes(anon_13) WHERE anon_11:Account)  |              0 |    1 |   26110 |          35904 |                 1336/0 |    16.126 | Fused in Pipeline 3 |                      |\r\n| |                      |    | AND all(anon_12 IN relationships(anon_13) WHERE endNode(anon_12).role = $autostring_2)               |                |      |         |                |                        |           |                     |                      |\r\n| |                      +----+------------------------------------------------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+----------------------+\r\n| +CartesianProduct      |  3 |                                                                                                      |              0 |    1 |       0 |           1932 |                        |     0.060 | In Pipeline 2       |                      |\r\n| |\\                     +----+------------------------------------------------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+----------------------+\r\n| | +Filter              |  4 | (cache[d.role] = $autostring_1 AND cache[d.role] = $autostring_2)                                    |              0 |    1 |       1 |                |                        |           |                     |                      |\r\n| | |                    +----+------------------------------------------------------------------------------------------------------+----------------+------+---------+----------------+                        |           |                     +----------------------+\r\n| | +NodeUniqueIndexSeek |  5 | UNIQUE d:Account(account_id) WHERE account_id = $dst                                                 |              1 |    1 |       2 |            392 |                    4/0 |     0.341 | Fused in Pipeline 1 | account_id_unique: 1 |\r\n| |                      +----+------------------------------------------------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+----------------------+\r\n| +Filter                |  6 | s.role = $autostring_0                                                                               |              0 |    1 |       1 |                |                        |           |                     |                      |\r\n| |                      +----+------------------------------------------------------------------------------------------------------+----------------+------+---------+----------------+                        |           |                     +----------------------+\r\n| +NodeUniqueIndexSeek   |  7 | UNIQUE s:Account(account_id) WHERE account_id = $src                                                 |              1 |    1 |       2 |            376 |                    4/0 |     0.473 | Fused in Pipeline 0 | account_id_unique: 1 |\r\n+------------------------+----+------------------------------------------------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+----------------------+\r\n\r\nTotal database accesses: 26120, total allocated memory: 38016\r\n",
+  "runtime": "PIPELINED",
+  "runtime-impl": "PIPELINED",
+  "version": "25",
+  "DbHits": 0,
+  "batch-size": 128,
+  "Details": "hops",
+  "planner-version": "2026.05.0",
+  "PipelineInfo": "Fused in Pipeline 3",
+  "runtime-version": "2026.05.0",
+  "Id": 0,
+  "EstimatedRows": 5.03836380125922e-05,
+  "planner": "COST",
+  "Rows": 1
+ },
+ "children": [
+  {
+   "args": {
+    "Id": 1,
+    "Details": "length((s)-[anon_7*]->(d)) AS hops",
+    "EstimatedRows": 5.03836380125922e-05,
+    "PipelineInfo": "Fused in Pipeline 3",
+    "DbHits": 4,
+    "Rows": 1
+   },
+   "children": [
+    {
+     "args": {
+      "Details": "anon_13 = (s)-[anon_7:TRANSFER*..6]->(d) WHERE all(anon_11 IN nodes(anon_13) WHERE anon_11:Account) AND all(anon_12 IN relationships(anon_13) WHERE endNode(anon_12).role = $autostring_2)",
+      "PipelineInfo": "Fused in Pipeline 3",
+      "Memory": 35904,
+      "Time": 16126299,
+      "Id": 2,
+      "EstimatedRows": 5.03836380125922e-05,
+      "PageCacheMisses": 0,
+      "DbHits": 26110,
+      "Rows": 1,
+      "PageCacheHits": 1336
+     },
+     "pageCacheMisses": 0,
+     "children": [
+      {
+       "args": {
+        "Memory": 1932,
+        "PipelineInfo": "In Pipeline 2",
+        "Time": 60399,
+        "Id": 3,
+        "EstimatedRows": 0.00012500000000000003,
+        "DbHits": 0,
+        "Rows": 1
+       },
+       "children": [
+        {
+         "args": {
+          "Id": 6,
+          "Details": "s.role = $autostring_0",
+          "EstimatedRows": 0.05,
+          "PipelineInfo": "Fused in Pipeline 0",
+          "DbHits": 1,
+          "Rows": 1
+         },
+         "children": [
+          {
+           "args": {
+            "Details": "UNIQUE s:Account(account_id) WHERE account_id = $src",
+            "PipelineInfo": "Fused in Pipeline 0",
+            "Memory": 376,
+            "Time": 472800,
+            "Id": 7,
+            "UsedIndexes": "account_id_unique: 1",
+            "EstimatedRows": 1.0,
+            "PageCacheMisses": 0,
+            "DbHits": 2,
+            "Rows": 1,
+            "PageCacheHits": 4
+           },
+           "pageCacheMisses": 0,
+           "dbHits": 2,
+           "identifiers": [
+            "s"
+           ],
+           "operatorType": "NodeUniqueIndexSeek@neo4j",
+           "time": 472800,
+           "rows": 1,
+           "pageCacheHitRatio": 1.0,
+           "pageCacheHits": 4
+          }
+         ],
+         "dbHits": 1,
+         "identifiers": [
+          "s"
+         ],
+         "operatorType": "Filter@neo4j",
+         "rows": 1
+        },
+        {
+         "args": {
+          "Id": 4,
+          "Details": "(cache[d.role] = $autostring_1 AND cache[d.role] = $autostring_2)",
+          "EstimatedRows": 0.0025000000000000005,
+          "PipelineInfo": "Fused in Pipeline 1",
+          "DbHits": 1,
+          "Rows": 1
+         },
+         "children": [
+          {
+           "args": {
+            "Details": "UNIQUE d:Account(account_id) WHERE account_id = $dst",
+            "PipelineInfo": "Fused in Pipeline 1",
+            "Memory": 392,
+            "Time": 340600,
+            "Id": 5,
+            "UsedIndexes": "account_id_unique: 1",
+            "EstimatedRows": 1.0,
+            "PageCacheMisses": 0,
+            "DbHits": 2,
+            "Rows": 1,
+            "PageCacheHits": 4
+           },
+           "pageCacheMisses": 0,
+           "dbHits": 2,
+           "identifiers": [
+            "d"
+           ],
+           "operatorType": "NodeUniqueIndexSeek@neo4j",
+           "time": 340600,
+           "rows": 1,
+           "pageCacheHitRatio": 1.0,
+           "pageCacheHits": 4
+          }
+         ],
+         "dbHits": 1,
+         "identifiers": [
+          "d"
+         ],
+         "operatorType": "Filter@neo4j",
+         "rows": 1
+        }
+       ],
+       "dbHits": 0,
+       "identifiers": [
+        "s",
+        "d"
+       ],
+       "operatorType": "CartesianProduct@neo4j",
+       "time": 60399,
+       "rows": 1
+      }
+     ],
+     "dbHits": 26110,
+     "identifiers": [
+      "s",
+      "d",
+      "anon_13",
+      "anon_7"
+     ],
+     "operatorType": "ShortestPath@neo4j",
+     "time": 16126299,
+     "rows": 1,
+     "pageCacheHitRatio": 1.0,
+     "pageCacheHits": 1336
+    }
+   ],
+   "dbHits": 4,
+   "identifiers": [
+    "s",
+    "anon_7",
+    "hops",
+    "anon_13",
+    "d"
+   ],
+   "operatorType": "Projection@neo4j",
+   "rows": 1
+  }
+ ],
+ "dbHits": 0,
+ "identifiers": [
+  "s",
+  "anon_7",
+  "hops",
+  "anon_13",
+  "d"
+ ],
+ "operatorType": "ProduceResults@neo4j",
+ "rows": 1
+}

@@ -1,0 +1,16 @@
+{
+ "case": "Q7-F-k4",
+ "params": {
+  "src": 203978,
+  "dst": 3573,
+  "k": 4
+ },
+ "pg_s": 0.43,
+ "neo_s": 0.012,
+ "pg_rows": 0,
+ "neo_rows": 0,
+ "match": true,
+ "pg": [],
+ "neo": [],
+ "status": "ok"
+}

@@ -1,1 +1,5 @@
--r requirements/requirements.txt
+psycopg[binary]>=3.1
+neo4j>=5.0
+numpy>=1.24
+matplotlib>=3.7
+pypdf>=5.0

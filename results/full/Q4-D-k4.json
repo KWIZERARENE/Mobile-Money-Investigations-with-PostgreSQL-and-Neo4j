@@ -1,0 +1,41 @@
+{
+ "case": "Q4-D-k4",
+ "params": {
+  "acc": 237998,
+  "k": 4
+ },
+ "pg_s": 0.003,
+ "neo_s": 0.009,
+ "pg_rows": 3,
+ "neo_rows": 3,
+ "match": true,
+ "pg": [
+  [
+   "Eastern",
+   2
+  ],
+  [
+   "Northern",
+   1
+  ],
+  [
+   "Western",
+   7
+  ]
+ ],
+ "neo": [
+  [
+   "Eastern",
+   2
+  ],
+  [
+   "Northern",
+   1
+  ],
+  [
+   "Western",
+   7
+  ]
+ ],
+ "status": "ok"
+}

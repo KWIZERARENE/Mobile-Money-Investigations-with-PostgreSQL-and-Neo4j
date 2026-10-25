@@ -1,0 +1,38 @@
+Aggregate  (cost=1798.13..1798.14 rows=1 width=4) (actual time=57874.205..57874.207 rows=1.00 loops=1)
+  Buffers: shared hit=59948143 read=111417
+  CTE bfs
+    ->  Recursive Union  (cost=0.42..1728.32 rows=3101 width=8) (actual time=0.021..57712.185 rows=427955.00 loops=1)
+          Storage: Memory  Maximum Storage: 16689kB
+          Buffers: shared hit=59948143 read=111417
+          ->  Index Scan using accounts_pkey on accounts a  (cost=0.42..8.44 rows=1 width=8) (actual time=0.017..0.019 rows=1.00 loops=1)
+                Index Cond: (account_id = 147228)
+                Filter: (role = 'person'::text)
+                Index Searches: 1
+                Buffers: shared hit=4
+          ->  Nested Loop  (cost=0.98..168.89 rows=310 width=8) (actual time=2.226..7864.230 rows=1454813.43 loops=7)
+                Buffers: shared hit=59948139 read=111417
+                ->  Nested Loop  (cost=0.56..26.74 rows=321 width=8) (actual time=2.023..3349.543 rows=2081265.43 loops=7)
+                      Buffers: shared hit=1674556 read=109568
+                      ->  WorkTable Scan on bfs b  (cost=0.00..0.22 rows=3 width=8) (actual time=1.666..9.184 rows=26851.00 loops=7)
+                            Filter: (depth < '6'::smallint)
+                            Rows Removed by Filter: 34285
+                      ->  Index Only Scan using idx_tr_sender on transfers t  (cost=0.56..7.77 rows=107 width=8) (actual time=0.077..0.117 rows=77.51 loops=187957)
+                            Index Cond: (sender_id = b.acc)
+                            Heap Fetches: 997
+                            Index Searches: 187957
+                            Buffers: shared hit=1674556 read=109568
+                ->  Index Scan using accounts_pkey on accounts a_1  (cost=0.42..0.44 rows=1 width=4) (actual time=0.002..0.002 rows=0.70 loops=14568858)
+                      Index Cond: (account_id = t.receiver_id)
+                      Filter: (role = 'person'::text)
+                      Rows Removed by Filter: 0
+                      Index Searches: 14568858
+                      Buffers: shared hit=58273583 read=1849
+  ->  CTE Scan on bfs  (cost=0.00..69.77 rows=16 width=4) (actual time=3077.565..57874.200 rows=2.00 loops=1)
+        Filter: (acc = 186823)
+        Rows Removed by Filter: 427953
+        Storage: Memory  Maximum Storage: 17470kB
+        Buffers: shared hit=59948143 read=111417
+Planning:
+  Buffers: shared hit=13 read=11
+Planning Time: 3.830 ms
+Execution Time: 57880.877 ms

@@ -1,0 +1,57 @@
+{
+ "case": "Q4-B-k8",
+ "params": {
+  "acc": 147228,
+  "k": 8
+ },
+ "pg_s": 0.012,
+ "neo_s": 0.018,
+ "pg_rows": 5,
+ "neo_rows": 5,
+ "match": true,
+ "pg": [
+  [
+   "Eastern",
+   40
+  ],
+  [
+   "Kigali",
+   33
+  ],
+  [
+   "Northern",
+   35
+  ],
+  [
+   "Southern",
+   47
+  ],
+  [
+   "Western",
+   33
+  ]
+ ],
+ "neo": [
+  [
+   "Eastern",
+   40
+  ],
+  [
+   "Kigali",
+   33
+  ],
+  [
+   "Northern",
+   35
+  ],
+  [
+   "Southern",
+   47
+  ],
+  [
+   "Western",
+   33
+  ]
+ ],
+ "status": "ok"
+}

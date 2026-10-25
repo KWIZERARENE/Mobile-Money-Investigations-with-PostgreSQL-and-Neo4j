@@ -1,0 +1,16 @@
+{
+ "case": "Q6-B",
+ "params": {
+  "acc": 147228,
+  "start": 1789285500,
+  "end": 1789289100
+ },
+ "pg_s": 0.002,
+ "neo_s": 0.017,
+ "pg_rows": 0,
+ "neo_rows": 0,
+ "match": true,
+ "pg": [],
+ "neo": [],
+ "status": "ok"
+}

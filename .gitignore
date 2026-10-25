@@ -1,7 +1,6 @@
-﻿.venv/
+.venv/
 __pycache__/
 *.csv
 *.dump
 *.db
 data/
-results/*.png
