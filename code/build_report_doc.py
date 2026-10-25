@@ -265,7 +265,7 @@ def build_docx(markdown_path, docx_path, base_dir=r"c:\assignement"):
     print("Initializing Document...")
     doc = docx.Document()
     
-    # Page setup: Standard Letter / A4 with 1-inch margins
+    # Page setup: Standard Letter / A4 with clean margins
     for sec in doc.sections:
         sec.top_margin = Inches(0.85)
         sec.bottom_margin = Inches(0.85)
@@ -288,6 +288,7 @@ def build_docx(markdown_path, docx_path, base_dir=r"c:\assignement"):
         md_text = f.read()
 
     # --- COVER PAGE ---
+    # Preserving the user's manual change: "Department of information Technology"
     print("Building Cover Page (Strictly 1 Page)...")
     logo_path = os.path.join(base_dir, "report", "auca_logo.png")
     if os.path.exists(logo_path):
@@ -306,7 +307,8 @@ def build_docx(markdown_path, docx_path, base_dir=r"c:\assignement"):
     r_inst.font.bold = True
     r_inst.font.color.rgb = RGBColor(0x1F, 0x4E, 0x78)
     
-    r_dept = p_inst.add_run("Department of Computer Science — Faculty of Science and Technology\n")
+    # User's edit: "Department of information Technology"
+    r_dept = p_inst.add_run("Department of information Technology\n")
     r_dept.font.name = "Calibri"
     r_dept.font.size = Pt(10)
     r_dept.font.color.rgb = RGBColor(0x55, 0x55, 0x55)
@@ -406,79 +408,108 @@ def build_docx(markdown_path, docx_path, base_dir=r"c:\assignement"):
     doc.add_page_break()
 
     # --- TABLE OF CONTENTS (PAGE 2) ---
-    print("Building Table of Contents...")
-    h_toc = doc.add_heading(level=1)
-    h_toc.paragraph_format.space_before = Pt(10)
-    h_toc.paragraph_format.space_after = Pt(8)
-    r = h_toc.add_run("Table of Contents")
-    r.font.name = "Calibri"
-    r.font.size = Pt(15)
-    r.font.bold = True
-    r.font.color.rgb = RGBColor(0x1F, 0x4E, 0x78)
+    # Exact user-requested specification:
+    print("Building Refined Table of Contents (User Format)...")
+    p_toc_hdr = doc.add_paragraph()
+    p_toc_hdr.paragraph_format.space_before = Pt(10)
+    p_toc_hdr.paragraph_format.space_after = Pt(10)
+    r_toc_hdr = p_toc_hdr.add_run("TABLE OF CONTENTS")
+    r_toc_hdr.font.name = "Calibri"
+    r_toc_hdr.font.size = Pt(16)
+    r_toc_hdr.font.bold = True
+    r_toc_hdr.font.color.rgb = RGBColor(0x1F, 0x4E, 0x78)
 
-    toc_items = [
-        ("1 Capture the data", "4"),
-        ("   1.1 Prepare your workspace", "4"),
-        ("   1.2 Build capture.py and Dataset Audit", "6"),
-        ("2 Build PostgreSQL", "11"),
-        ("   2.1 Define the five tables", "11"),
-        ("   2.2 Bulk-Load, Indexing, and Verification", "15"),
-        ("3 Build Neo4j", "21"),
-        ("   3.1 Map the same facts into Graph Topologies", "21"),
-        ("   3.2 Prepare CSVs and Admin Import", "22"),
-        ("   3.3 Inspect One Account in Both Models", "28"),
-        ("4 Answer routine business questions", "31"),
-        ("   4.1 Q1: Account activity", "31"),
-        ("   4.2 Q2: Daily activity and Month-Long Reconciliations", "32"),
-        ("   4.3 Q3: Shared devices and Temporal Overlaps", "33"),
-        ("5 Investigate connected accounts", "35"),
-        ("   5.1 Q4: Ownership and device networks", "35"),
-        ("   5.2 Q5: Rapid onward payments", "36"),
-        ("   5.3 Q6: Circular payments", "37"),
-        ("   5.4 Q7: Shortest transfer connection", "39"),
-        ("6 Check correctness and performance", "41"),
-        ("   6.1 Build one comparison program (61 Cases)", "41"),
-        ("   6.2 Time a fixed selection (21 Cases)", "44"),
-        ("   6.3 Execution Plans and SQL Improvement (q7_v2)", "47"),
-        ("7 Test concurrent requests", "49"),
-        ("   7.1 Build a Multi-Process Load Test", "49"),
-        ("   7.2 Explain Concurrency Scaling and Saturation", "52"),
-        ("8 Make and defend decisions", "54"),
-        ("   8.1 Prioritize Suspect Accounts for Regulatory Review", "54"),
-        ("   8.2 Architectural Recommendation (500 Words)", "58"),
-        ("   8.3 Individual Judgements and Technical Reflections", "59"),
-        ("9 Submit reproducible work", "60"),
-        ("   9.1 Organize the report", "60"),
-        ("   9.2 Make the work reproducible", "61"),
-        ("   9.3 Document contributions", "65"),
+    user_toc_data = [
+        (True, "1 Capture the Data", "4"),
+        (False, "1.1 Prepare Your Workspace", "4"),
+        (False, "1.2 Build capture.py and Dataset Audit", "6"),
+        (True, "2 Build PostgreSQL", "11"),
+        (False, "2.1 Define the Five Tables", "11"),
+        (False, "2.2 Bulk-Load, Indexing, and Verification", "15"),
+        (True, "3 Build Neo4j", "21"),
+        (False, "3.1 Map the Same Facts into Graph Topologies", "21"),
+        (False, "3.2 Prepare CSVs and Admin Import", "22"),
+        (False, "3.3 Inspect One Account in Both Models", "28"),
+        (True, "4 Answer Routine Business Questions", "31"),
+        (False, "4.1 Q1: Account Activity", "31"),
+        (False, "4.2 Q2: Daily Activity and Month-Long Reconciliations", "32"),
+        (False, "4.3 Q3: Shared Devices and Temporal Overlaps", "33"),
+        (True, "5 Investigate Connected Accounts", "35"),
+        (False, "5.1 Q4: Ownership and Device Networks", "35"),
+        (False, "5.2 Q5: Rapid Onward Payments", "36"),
+        (False, "5.3 Q6: Circular Payments", "37"),
+        (False, "5.4 Q7: Shortest Transfer Connection", "39"),
+        (True, "6 Check Correctness and Performance", "41"),
+        (False, "6.1 Build One Comparison Program (61 Cases)", "41"),
+        (False, "6.2 Time a Fixed Selection (21 Cases)", "44"),
+        (False, "6.3 Execution Plans and SQL Improvement (q7_v2)", "47"),
+        (True, "7 Test Concurrent Requests", "49"),
+        (False, "7.1 Build a Multi-Process Load Test", "49"),
+        (False, "7.2 Explain Concurrency Scaling and Saturation", "52"),
+        (True, "8 Make and Defend Decisions", "54"),
+        (False, "8.1 Prioritize Suspect Accounts for Regulatory Review", "58"),
+        (False, "8.2 Architectural Recommendation (500 Words)", "58"),
+        (False, "8.3 Individual Judgements and Technical Reflections", "59"),
+        (True, "9 Submit Reproducible Work", "60"),
+        (False, "9.1 Organize the Report", "60"),
+        (False, "9.2 Make the Work Reproducible", "61"),
+        (False, "9.3 Document Contributions", "65"),
     ]
 
-    for title, pg in toc_items:
-        p_t = doc.add_paragraph()
-        p_t.paragraph_format.space_after = Pt(1.5)
-        p_t.paragraph_format.line_spacing = 1.10
+    for is_major, title, page_str in user_toc_data:
+        p_item = doc.add_paragraph()
+        p_item.paragraph_format.line_spacing = 1.05
         
-        run_t = p_t.add_run(title)
-        run_t.font.name = "Calibri"
-        if not title.startswith("   "):
-            run_t.font.bold = True
-            run_t.font.size = Pt(10.0)
-            run_t.font.color.rgb = RGBColor(0x1F, 0x4E, 0x78)
-        else:
-            run_t.font.size = Pt(9.5)
-            run_t.font.color.rgb = RGBColor(0x33, 0x33, 0x33)
+        if is_major:
+            p_item.paragraph_format.space_before = Pt(5)
+            p_item.paragraph_format.space_after = Pt(2)
+            p_item.paragraph_format.left_indent = Inches(0.0)
             
-        dots_count = max(2, (75 - int(len(title) * 1.5)))
-        run_dots = p_t.add_run(" " + "." * dots_count + " ")
-        run_dots.font.name = "Calibri"
-        run_dots.font.size = Pt(9.0)
-        run_dots.font.color.rgb = RGBColor(0xAA, 0xAA, 0xAA)
-        
-        run_p = p_t.add_run(pg)
-        run_p.font.name = "Calibri"
-        run_p.font.size = Pt(9.5)
-        run_p.font.bold = not title.startswith("   ")
-        run_p.font.color.rgb = RGBColor(0x1F, 0x4E, 0x78) if not title.startswith("   ") else RGBColor(0x33, 0x33, 0x33)
+            # Title
+            r_t = p_item.add_run(title)
+            r_t.font.name = "Calibri"
+            r_t.font.size = Pt(10.5)
+            r_t.font.bold = True
+            r_t.font.color.rgb = RGBColor(0x1F, 0x4E, 0x78)
+            
+            # Dots
+            dots_len = max(3, 76 - int(len(title) * 1.4))
+            r_d = p_item.add_run(" " + "." * dots_len + " ")
+            r_d.font.name = "Calibri"
+            r_d.font.size = Pt(9.0)
+            r_d.font.color.rgb = RGBColor(0x88, 0x88, 0x88)
+            
+            # Page Number
+            r_p = p_item.add_run(page_str)
+            r_p.font.name = "Calibri"
+            r_p.font.size = Pt(10.5)
+            r_p.font.bold = True
+            r_p.font.color.rgb = RGBColor(0x1F, 0x4E, 0x78)
+        else:
+            p_item.paragraph_format.space_before = Pt(1)
+            p_item.paragraph_format.space_after = Pt(1.5)
+            p_item.paragraph_format.left_indent = Inches(0.2)
+            
+            # Title
+            r_t = p_item.add_run(title)
+            r_t.font.name = "Calibri"
+            r_t.font.size = Pt(9.5)
+            r_t.font.bold = False
+            r_t.font.color.rgb = RGBColor(0x33, 0x33, 0x33)
+            
+            # Dots
+            dots_len = max(3, 72 - int(len(title) * 1.35))
+            r_d = p_item.add_run(" " + "." * dots_len + " ")
+            r_d.font.name = "Calibri"
+            r_d.font.size = Pt(9.0)
+            r_d.font.color.rgb = RGBColor(0xAA, 0xAA, 0xAA)
+            
+            # Page Number
+            r_p = p_item.add_run(page_str)
+            r_p.font.name = "Calibri"
+            r_p.font.size = Pt(9.5)
+            r_p.font.bold = False
+            r_p.font.color.rgb = RGBColor(0x33, 0x33, 0x33)
 
     # Page Break after TOC
     doc.add_page_break()
