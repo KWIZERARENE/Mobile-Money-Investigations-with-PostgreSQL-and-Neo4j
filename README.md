@@ -10,11 +10,11 @@ All timestamps and queries operate on **Central Africa Time (CAT, Africa/Kigali,
 ---
 
 ### Group 4 Members
-| No. | Full Name | Student ID | AUCA Institutional Email |
-|:---:|:---|:---:|:---|
-| 1 | **Amie Marie Flora Dushimumukiza** | 101405 | dushimumukiza.flora@auca.ac.rw |
-| 2 | **Kwizera Rene** | 101379 | rene.kwizera@auca.ac.rw |
-| 3 | **Grace Teta** | 101378 | grace.teta@auca.ac.rw |
+| No. | Full Name | Student ID |
+|:---:|:---|:---:|
+| 1 | **Amie Marie Flora Dushimumukiza** | 101405 |
+| 2 | **Kwizera Rene** | 101379 |
+| 3 | **Grace Teta** | 101378 |
 
 **Lecturer:** Temitope Oguntade  
 **Academic Year:** 2026  
