@@ -1,10 +1,26 @@
 # Mobile Money Investigations with PostgreSQL and Neo4j
 ## Advanced Big Data Analytics — Project 2 / Assignment II
 ### Adventist University of Central Africa (AUCA)
+#### Master of Science in Big Data Analytics
 
-A comparative evaluation of **PostgreSQL 18.6** and **Neo4j 2026.05.0** across data capture, relational vs. graph schema modeling, routine reporting, multi-hop forensic graph traversals, execution plan optimization, and multi-client concurrent scalability over 20,003,300 financial transfers (231.48 Billion RWF) in Rwanda for September 2026.
+A comprehensive comparative evaluation of **PostgreSQL 18.6** and **Neo4j 2026.05.0** across data capture, relational vs. graph schema modeling, routine reporting, multi-hop forensic graph traversals, execution plan optimization, and multi-client concurrent scalability over **20,003,300 financial transfers** (231.48 Billion RWF) in Rwanda for September 2026.
 
 All timestamps and queries operate on **Central Africa Time (CAT, Africa/Kigali, UTC+02:00)**.
+
+---
+
+### Group 4 Members
+| No. | Full Name | Student ID | AUCA Institutional Email |
+|:---:|:---|:---:|:---|
+| 1 | **Amie Marie Flora Dushimumukiza** | 101405 | dushimumukiza.flora@auca.ac.rw |
+| 2 | **Kwizera Rene** | 101379 | rene.kwizera@auca.ac.rw |
+| 3 | **Grace Teta** | 101378 | grace.teta@auca.ac.rw |
+
+**Lecturer:** Temitope Oguntade  
+**Academic Year:** 2026  
+**Due Date:** 26 October 2026 at 11:59 PM CAT  
+**Submission Date:** 25 October 2026  
+**GitHub Repository:** [KWIZERARENE/Mobile-Money-Investigations-with-PostgreSQL-and-Neo4j](https://github.com/KWIZERARENE/Mobile-Money-Investigations-with-PostgreSQL-and-Neo4j)
 
 ---
 
@@ -12,66 +28,70 @@ All timestamps and queries operate on **Central Africa Time (CAT, Africa/Kigali,
 
 ```
 c:\assignement\
-├── README.md                      # Complete project documentation and runbook
-├── requirements.txt               # Python package dependencies
-├── setup_env.ps1                  # PowerShell virtual environment setup helper
+├── README.md                                  # Complete project documentation and runbook
+├── requirements.txt                           # Python package dependencies
+├── setup_env.ps1                              # PowerShell virtual environment setup helper
 │
-├── code/                          # Production pipeline and analytical scripts (21 files)
-│   ├── mobile_money_generator.py  # Unchanged synthetic generator (SHA-256 verified)
-│   ├── view.py                    # Milestone 1: Preview first 10 rows per stream
-│   ├── capture.py                 # Milestone 1: Progressive CSV streaming & audit log
-│   ├── prepare_import.py          # Milestone 3: Generate Neo4j typed import CSVs
-│   ├── db.py                      # Central database connection manager
-│   ├── timeutil.py                # CAT epoch timestamp boundary helper
-│   ├── cases.py                   # Review account configurations for Sets A–F
-│   ├── queries.py                 # Parameterized SQL and Cypher query pairs (Q1–Q7)
-│   ├── verify_counts.py           # Database entity and relationship count validation
-│   ├── independent_check.py       # Milestone 6: Independent CSV validation in Python
-│   ├── run_all.py                 # Milestone 6: 61-case cross-engine test runner
-│   ├── save_all.py                # Milestone 6: Full results exporter (results/full/*.json)
-│   ├── q7_paths.py                # Milestone 5: Q7 path direction and role validator
-│   ├── q7_v2.py                   # Milestone 6: Benchmark comparing Q7 v1 vs q7_v2
-│   ├── bench.py                   # Milestone 6: 21-case warm-cache performance timer
-│   ├── report_timing.py           # Milestone 6: Summarizes raw timing into CSV
-│   ├── plans.py                   # Milestone 6: Extracts EXPLAIN and PROFILE plans
-│   ├── conc.py                    # Milestone 7: Multi-process concurrency load tester
-│   ├── plot_conc.py               # Milestone 7: Aggregates concurrency and plots charts
-│   ├── evidence.py                # Milestone 8: Gathers forensic evidence for Sets A–F
-│   └── diagrams.py                # Milestone 8: Generates Set C cycle & device diagrams
+├── report/                                    # Final project report deliverables
+│   ├── Assignment II Group Report GROUP 4.docx # Comprehensive 60-page Word report (.docx)
+│   └── Assignment II Group Report GROUP 4.pdf  # Final compiled PDF report with embedded screenshots
 │
-├── sql/                           # PostgreSQL scripts in execution order (01 to 05)
-│   ├── 01_schema.sql              # Table definitions, primary keys, and domain checks
-│   ├── 02_load.sql                # High-speed \copy bulk loading in dependency order
-│   ├── 03_constraints_indexes.sql # Foreign keys, covering B-tree indexes, and BRIN index
-│   ├── 04_verify.sql              # Database verification, roles, sizes, and audit checks
-│   └── 05_q7_v2.sql              # Optimized iterative BFS shortest-path function
+├── code/                                      # Production pipeline, analytical & reporting scripts (25 files)
+│   ├── mobile_money_generator.py              # Unchanged synthetic generator (SHA-256 verified)
+│   ├── view.py                                # Milestone 1: Preview first 10 rows per stream
+│   ├── capture.py                             # Milestone 1: Progressive CSV streaming & audit log
+│   ├── prepare_import.py                      # Milestone 3: Generate Neo4j typed import CSVs
+│   ├── db.py                                  # Central database connection manager
+│   ├── timeutil.py                            # CAT epoch timestamp boundary helper
+│   ├── cases.py                               # Review account configurations for Sets A–F
+│   ├── queries.py                             # Parameterized SQL and Cypher query pairs (Q1–Q7)
+│   ├── verify_counts.py                       # Database entity and relationship count validation
+│   ├── independent_check.py                   # Milestone 6: Independent CSV validation in Python
+│   ├── run_all.py                             # Milestone 6: 61-case cross-engine test runner
+│   ├── save_all.py                            # Milestone 6: Full results exporter (results/full/*.json)
+│   ├── q7_paths.py                            # Milestone 5: Q7 path direction and role validator
+│   ├── q7_v2.py                               # Milestone 6: Benchmark comparing Q7 v1 vs q7_v2
+│   ├── bench.py                               # Milestone 6: 21-case warm-cache performance timer
+│   ├── report_timing.py                       # Milestone 6: Summarizes raw timing into CSV
+│   ├── plans.py                               # Milestone 6: Extracts EXPLAIN and PROFILE plans
+│   ├── conc.py                                # Milestone 7: Multi-process concurrency load tester
+│   ├── plot_conc.py                           # Milestone 7: Aggregates concurrency and plots charts
+│   ├── evidence.py                            # Milestone 8: Gathers forensic evidence for Sets A–F
+│   ├── diagrams.py                            # Milestone 8: Generates Set C cycle & device diagrams
+│   ├── build_report_doc.py                    # Report Builder: Compiles formatted Word report (.docx)
+│   ├── convert_to_pdf.ps1                     # PDF Exporter: Converts Word report to PDF via COM
+│   ├── build_guide_doc.py                     # Guide Builder: Compiles line-by-line explanation doc
+│   └── convert_guide_to_pdf.ps1               # Guide Exporter: Converts explanation doc to PDF
 │
-├── report/                        # Project reporting deliverables
-│   ├── Assignment_II_Group_Report.md  # Comprehensive technical group report
-│   └── reference_handouts/        # Project specifications, plan, and Assignment 1 exemplar
+├── sql/                                       # PostgreSQL scripts in execution order (01 to 05)
+│   ├── 01_schema.sql                          # Table definitions, primary keys, and domain checks
+│   ├── 02_load.sql                            # High-speed \copy bulk loading in dependency order
+│   ├── 03_constraints_indexes.sql             # Foreign keys, covering B-tree indexes, and BRIN index
+│   ├── 04_verify.sql                          # Database verification, roles, sizes, and audit checks
+│   └── 05_q7_v2.sql                          # Optimized iterative BFS shortest-path function
 │
-├── results/                       # Experimental results, summaries, plans, and diagrams
-│   ├── capture_audit.json         # Master audit totals from streaming capture
-│   ├── summary.csv                # 61-case cross-engine verification summary
-│   ├── all_answers.txt            # Formatted query outputs for all 61 cases
-│   ├── timing_summary.csv         # 21-case median benchmark timing comparison
-│   ├── concurrency_final.csv      # Concurrency throughput and latency summary
-│   ├── concurrency_plot.png       # Concurrency scaling chart (throughput & p95)
-│   ├── diagram_cycle_C.png        # Set C 6-transfer circular payment cycle diagram
-│   ├── diagram_devices_C.png      # Set C device co-location bipartite network diagram
-│   ├── generator_hash.txt         # SHA-256 integrity verification of generator
-│   ├── pg_load_time.txt           # Measured PostgreSQL load duration (52.8 s)
-│   ├── pg_index_time.txt          # Measured PostgreSQL index setup duration (58.4 s)
-│   ├── import_log.txt             # Neo4j offline admin import statistics (50.4 s)
-│   ├── neo4j.conf.snapshot        # Snapshot of Neo4j DBMS memory configuration
-│   ├── full/                      # Complete JSON outputs for all 61 cases
-│   ├── logs/                      # Raw console outputs and execution traces
-│   └── smoke_tests/               # Intermediate exploratory test logs
+├── results/                                   # Experimental results, summaries, plans, and diagrams
+│   ├── capture_audit.json                     # Master audit totals from streaming capture
+│   ├── summary.csv                            # 61-case cross-engine verification summary
+│   ├── all_answers.txt                        # Formatted query outputs for all 61 cases
+│   ├── timing_summary.csv                     # 21-case median benchmark timing comparison
+│   ├── concurrency_final.csv                  # Concurrency throughput and latency summary
+│   ├── concurrency_plot.png                   # Concurrency scaling chart (throughput & p95)
+│   ├── diagram_cycle_C.png                    # Set C 6-transfer circular payment cycle diagram
+│   ├── diagram_devices_C.png                  # Set C device co-location bipartite network diagram
+│   ├── generator_hash.txt                     # SHA-256 integrity verification of generator
+│   ├── pg_load_time.txt                       # Measured PostgreSQL load duration (52.8 s)
+│   ├── pg_index_time.txt                      # Measured PostgreSQL index setup duration (58.4 s)
+│   ├── import_log.txt                         # Neo4j offline admin import statistics (50.4 s)
+│   ├── neo4j.conf.snapshot                    # Snapshot of Neo4j DBMS memory configuration
+│   ├── full/                                  # Complete JSON outputs for all 61 cases
+│   ├── logs/                                  # Raw console outputs and execution traces
+│   └── smoke_tests/                           # Intermediate exploratory test logs
 │
-├── screenshots/                   # 45 execution screenshots with taskbar/clock visible
-├── data/                          # Generated CSV files (git-ignored, regenerated locally)
-└── archive/                       # Deprecated scratch scripts from exploratory phases
-    └── scratch_code/              # Archived prototypes (dump_results.py, test_one.py, etc.)
+├── screenshots/                               # 45 verified execution screenshots with taskbar/clock visible
+├── data/                                      # Generated CSV files (git-ignored, regenerated locally)
+└── archive/                                   # Deprecated scratch scripts from exploratory phases
+    └── scratch_code/                          # Archived prototypes (dump_results.py, test_one.py, etc.)
 ```
 
 ---
@@ -262,9 +282,26 @@ neo4j stop
 
 ---
 
+### Phase 10: Report Generation and PDF Compilation (Deliverables)
+The final submission report is automatically built and compiled directly from raw execution results, markdown text, and high-resolution screenshots:
+
+```powershell
+cd C:\assignement\code
+
+# 1. Compile the comprehensive Word report (.docx) with embedded figures & styled tables
+python build_report_doc.py
+
+# 2. Export Word document to standalone publication PDF via Microsoft Word COM automation
+powershell -ExecutionPolicy Bypass -File convert_to_pdf.ps1
+```
+*Output:* Compiles `report/Assignment II Group Report GROUP 4.docx` and `report/Assignment II Group Report GROUP 4.pdf`.
+
+---
+
 ## Deliverables Summary
 
-* **Written Report:** [report/Assignment_II_Group_Report.md](report/Assignment_II_Group_Report.md)
-* **Code Submissions:** `code/*.py` and `sql/*.sql`
-* **Evidence Screenshots:** `screenshots/*.png`
-* **Benchmarking Artifacts:** `results/summary.csv`, `results/timing_summary.csv`, `results/concurrency_final.csv`
+* **Final PDF Report:** [`report/Assignment II Group Report GROUP 4.pdf`](report/Assignment%20II%20Group%20Report%20GROUP%204.pdf) (Comprehensive 60-page technical report with embedded screenshots)
+* **Final Word Document:** [`report/Assignment II Group Report GROUP 4.docx`](report/Assignment%20II%20Group%20Report%20GROUP%204.docx)
+* **Code Submissions:** Complete production pipeline in [`code/`](code/) and SQL scripts in [`sql/`](sql/)
+* **Execution Screenshots:** 45 numbered, timestamp-verified screenshots in [`screenshots/`](screenshots/)
+* **Benchmarking Artifacts:** [`results/summary.csv`](results/summary.csv), [`results/timing_summary.csv`](results/timing_summary.csv), [`results/concurrency_final.csv`](results/concurrency_final.csv)
